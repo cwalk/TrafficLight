@@ -1,7 +1,10 @@
-/*auto cycle after 5 seconds
- * Basic Traffic Light
+/*
+ * Full Traffic Light
  * Clayton Walker
  */
+
+ //setup button pin
+ int buttonPin = 2;
 
 //setup LEDs
 int stopRedPin = 12;
@@ -9,6 +12,9 @@ int stopYellowPin = 11;
 int stopGreenPin = 10;
 int pedRedPin = 9;
 int pedGreenPin = 8;
+
+long pedLightTimer;
+int timeout = 5000;
 
 void setup() {
   // setup pin modules
@@ -26,9 +32,12 @@ void setup() {
 }
 
 void loop() {
-  // wait 5 seconds, then start cycle
-  delay(5000);
-  stoplight();
+  //start cycle
+  bool buttonState = digitalRead(buttonPin);
+
+  if(buttonState == HIGH && (millis() - pedLightTimer) > timeout){
+    stoplight();
+  }
 }
 
 void stoplight(){
@@ -51,11 +60,21 @@ void pedestrian(){
   delay(5000);
   //turn off green ped light and turn back on red ped light
   digitalWrite(pedGreenPin, LOW);
+
+  for(int x = 0; x < 10; x++){
+    digitalWrite(pedGreenPin, HIGH);
+    delay(250);
+    digitalWrite(pedGreenPin, LOW);
+    delay(250);
+  }
+  
   digitalWrite(pedRedPin, HIGH);
 
   //turn off red ped light
   digitalWrite(stopRedPin, LOW);
   //turn on green stoplight
-  digitalWrite(stopGreenPin, HIGH); 
+  digitalWrite(stopGreenPin, HIGH);
+
+  pedLightTimer = millis();
 }
 
