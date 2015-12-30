@@ -6,8 +6,7 @@
 int ledPin = 5;
 int buttonPin = 4;
 
-bool ledState = LOW;
-bool lastState = LOW;
+bool ledState;
 
 void setup() {
   // put your setup code here, to run once:
@@ -16,12 +15,8 @@ void setup() {
 }
 
 void loop() {
-  //check for button push
-  bool buttonState = digitalRead(buttonPin);
+  // put your main code here, to run repeatedly:
+  ledState = digitalRead(buttonPin);
 
-  //if button was pushed, change state of LED
-  if(buttonState == HIGH && lastState == LOW){
-    
-  }
   digitalWrite(ledPin, ledState);
 }
