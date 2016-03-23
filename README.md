@@ -18,4 +18,4 @@ YouTube: https://www.youtube.com/watch?v=MmrM7mkt7xU
 
 ## Circuit Diagram
 
-![Circuit Diagram](/Circuit.png?raw=true "Circuit Diagram")
+![Circuit Diagram](/Circuit.jpg?raw=true "Circuit Diagram")
